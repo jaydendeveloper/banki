@@ -1,0 +1,7 @@
+J:\12c\c#\20241015\banki\banki\bin\Debug\banki.exe.config
+J:\12c\c#\20241015\banki\banki\bin\Debug\banki.exe
+J:\12c\c#\20241015\banki\banki\bin\Debug\banki.pdb
+J:\12c\c#\20241015\banki\banki\obj\Debug\banki.csproj.AssemblyReference.cache
+J:\12c\c#\20241015\banki\banki\obj\Debug\banki.csproj.CoreCompileInputs.cache
+J:\12c\c#\20241015\banki\banki\obj\Debug\banki.exe
+J:\12c\c#\20241015\banki\banki\obj\Debug\banki.pdb
