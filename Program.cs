@@ -401,7 +401,7 @@ namespace banki
                 while (true)
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("MENUI");
+                    Console.WriteLine("MENU");
                     Console.WriteLine("1-Táblázat | 2-Átlag | 3-Havi bontás | 4-Évi leggazdagabb | 5-Legjobb a banknak");
                     Console.WriteLine("| 6 Kamat beállítás | 7 - Ügyfélszámla Kamat kiszámolás | 8 - Kamatból adódó éves banki egyenleg |");
                     Console.WriteLine("9 - Ügyfél kamatterhelés / jóváírás | 10 - Ügyfél hozzáadása");
