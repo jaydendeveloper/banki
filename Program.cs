@@ -321,6 +321,58 @@ namespace banki
                 Console.WriteLine();
             }
 
+            void printCustomerBalance(Customer[] customers)
+            {
+                foreach (Customer customer in customers)
+                {
+                    int sum = 0;
+                    foreach(int balance in customer.Balances)
+                    {
+                        sum += balance;
+                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(customer.Name);
+                    if(sum > 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("\t" + sum);
+                    } else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("\t" + sum);
+                    }
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine();
+                }
+            }
+
+            void addNewCustomer(int CUSTOMER_COUNT, int BALANCE_COUNT, Customer[] customers)
+            {
+                Customer customer = new Customer();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Adjon meg egy nevet");
+                Console.ForegroundColor = ConsoleColor.Green;
+                customer.Name = Console.ReadLine();
+                int[] balances = new int[BALANCE_COUNT];
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Adja meg a havi egyenlegeket:");
+                for (int i = 0; i < BALANCE_COUNT; i++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(months[i] + "\t");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    balances[i] = int.Parse(Console.ReadLine());
+                }
+                customer.Balances = balances;
+                customer.Kamatok = new double[BALANCE_COUNT];
+
+                Array.Resize<Customer>(ref customers, customers.Length +1);
+                Console.WriteLine(customers.Length);
+                customers[customers.Length] = customer;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+            }
+
 
             void home()
             {
@@ -339,7 +391,8 @@ namespace banki
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Hány havi adat?");
                 Console.ForegroundColor = ConsoleColor.Green;
-                int BALANCE_COUNT = int.Parse(Console.ReadLine());
+                int input = int.Parse(Console.ReadLine());
+                int BALANCE_COUNT = input > 20 ? 12 : input;
 
                 Customer[] customers = new Customer[CUSTOMER_COUNT];
 
@@ -350,15 +403,9 @@ namespace banki
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.WriteLine("MENUI");
                     Console.WriteLine("1-Táblázat | 2-Átlag | 3-Havi bontás | 4-Évi leggazdagabb | 5-Legjobb a banknak");
-                    Console.WriteLine("| 6 Kamat beállítás | 7 - Ügyfélszámla Kamat kiszámolás | 8 - Éves banki egyenleg");
+                    Console.WriteLine("| 6 Kamat beállítás | 7 - Ügyfélszámla Kamat kiszámolás | 8 - Kamatból adódó éves banki egyenleg |");
+                    Console.WriteLine("9 - Ügyfél kamatterhelés / jóváírás | 10 - Ügyfél hozzáadása");
                     Console.WriteLine("HOME - Vissza | EXIT - Kilépés");
-                    /*Console.WriteLine("― 1 - Táblázat");
-                    Console.WriteLine("-- 2 - Átlag");
-                    Console.WriteLine("--- 3 - Havi bontás");
-                    Console.WriteLine("---- 4 - Évi leggazdagabb");
-                    Console.WriteLine("----- 5 - Legjobb a banknak");
-                    Console.WriteLine("----- HOME - Vissza");
-                    Console.WriteLine("------ EXIT - Kilépés");*/
                     Console.ForegroundColor = ConsoleColor.Green;
                     string option = Console.ReadLine();
 
@@ -387,6 +434,12 @@ namespace banki
                             break;
                         case "8":
                             printYearlyBankInterestBalance(customers);
+                            break; 
+                        case "9":
+                            printCustomerBalance(customers);
+                            break;
+                        case "10":
+                            addNewCustomer(CUSTOMER_COUNT, BALANCE_COUNT, customers);
                             break;
                         case "home":
                             home();
